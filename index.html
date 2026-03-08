@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nikan Mehrara | Portfolio</title>
+  <meta name="description" content="Portfolio website for Nikan Mehrara featuring resume, business intelligence work, machine learning, R programming, and data analytics." />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --panel: rgba(255,255,255,0.06);
+      --panel-strong: rgba(255,255,255,0.1);
+      --text: #eef2ff;
+      --muted: #b7c0e0;
+      --accent: #78a6ff;
+      --accent-2: #8ef0d5;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 16px 40px rgba(0,0,0,0.25);
+      --radius: 20px;
+      --maxw: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(120,166,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(142,240,213,0.16), transparent 25%),
+        linear-gradient(180deg, #0a0f1e 0%, #0b1020 100%);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .container {
+      width: min(calc(100% - 2rem), var(--maxw));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 24, 0.72);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: 0.02em;
+      font-size: 1.05rem;
+    }
+
+    .brand span { color: var(--accent-2); }
+
+    .nav-links {
+      display: flex;
+      gap: 0.7rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 0.6rem 0.95rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      color: var(--muted);
+      transition: 0.25s ease;
+      font-size: 0.95rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+      background: var(--panel);
+      border-color: var(--border);
+    }
+
+    .hero {
+      padding: 5.5rem 0 3rem;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-main {
+      padding: 2rem;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.45rem 0.8rem;
+      border-radius: 999px;
+      background: rgba(120,166,255,0.12);
+      border: 1px solid rgba(120,166,255,0.22);
+      color: #dce8ff;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    h1, h2, h3 { line-height: 1.15; margin: 0; }
+    h1 {
+      font-size: clamp(2.2rem, 4.8vw, 4.5rem);
+      margin-bottom: 1rem;
+    }
+
+    .gradient {
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 62ch;
+      margin-bottom: 1.4rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 0.85rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.4rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.1rem;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--panel-strong);
+      color: var(--text);
+      font-weight: 600;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(120,166,255,0.45);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, rgba(120,166,255,0.24), rgba(142,240,213,0.18));
+      border-color: rgba(120,166,255,0.42);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.85rem;
+      margin-top: 1.25rem;
+    }
+
+    .stat {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .stat span { color: var(--muted); font-size: 0.92rem; }
+
+    .hero-side {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .profile {
+      padding: 1.15rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .profile h3 { margin-bottom: 0.7rem; }
+    .profile p { margin: 0; color: var(--muted); }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.48rem 0.78rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.04);
+      color: #dde6ff;
+      font-size: 0.88rem;
+    }
+
+    section {
+      padding: 1rem 0 3rem;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .section-head p {
+      margin: 0.55rem 0 0;
+      color: var(--muted);
+      max-width: 65ch;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 1rem;
+    }
+
+    .panel {
+      grid-column: span 12;
+      padding: 1.3rem;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 1rem;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0.9rem;
+    }
+
+    .timeline-item {
+      padding: 1rem;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .timeline-item small {
+      color: var(--accent-2);
+      display: inline-block;
+      margin-bottom: 0.3rem;
+    }
+
+    .timeline-item p,
+    .project-card p,
+    .bullet-card p,
+    .contact-card p { color: var(--muted); }
+
+    .skills-grid,
+    .projects-grid,
+    .bi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+    }
+
+    .bullet-card,
+    .project-card,
+    .contact-card,
+    .bi-card {
+      padding: 1.15rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .project-meta,
+    .bi-meta {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin: 0.8rem 0 0.95rem;
+    }
+
+    .mini {
+      font-size: 0.82rem;
+      padding: 0.35rem 0.6rem;
+      border-radius: 999px;
+      background: rgba(120,166,255,0.1);
+      color: #dce8ff;
+      border: 1px solid rgba(120,166,255,0.2);
+    }
+
+    ul.clean {
+      padding-left: 1rem;
+      margin: 0.7rem 0 0;
+      color: var(--muted);
+    }
+
+    .tab-note {
+      margin-bottom: 1rem;
+      padding: 1rem 1.1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(142,240,213,0.18);
+      background: rgba(142,240,213,0.06);
+      color: #d6fff5;
+    }
+
+    .contact-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    footer {
+      padding: 1rem 0 3rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .hidden-page {
+      display: none;
+    }
+
+    .page.active-page {
+      display: block;
+    }
+
+    @media (max-width: 900px) {
+      .hero,
+      .about,
+      .contact-wrap,
+      .skills-grid,
+      .projects-grid,
+      .bi-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .hero {
+        padding-top: 3.5rem;
+      }
+
+      .hero-main,
+      .hero-side,
+      .panel {
+        padding: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home">Nikan <span>Mehrara</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="#home" class="nav-link active" data-page="home">Home</a>
+        <a href="#bi" class="nav-link" data-page="bi">Business Intelligence</a>
+        <a href="#" aria-disabled="true">Machine Learning</a>
+        <a href="#" aria-disabled="true">R Programming</a>
+        <a href="#" aria-disabled="true">Data Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="home" class="page active-page">
+      <div class="container hero">
+        <div class="card hero-main">
+          <div class="eyebrow">Portfolio Website · GitHub Pages Ready</div>
+          <h1>
+            Building data-driven work across
+            <span class="gradient">BI, analytics, and machine learning</span>
+          </h1>
+          <p class="lead">
+            I turn data into structured insights, dashboards, and business-facing analysis. This site is a central place to present my resume, selected projects, technical skills, and practical work in business intelligence.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#bi" data-page-link="bi">Explore BI Work</a>
+            <a class="btn" href="https://github.com/nikemehr" target="_blank" rel="noreferrer">GitHub</a>
+            <a class="btn" href="mailto:your-email@example.com">Contact Me</a>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <strong>BI</strong>
+              <span>Dashboards, KPIs, reporting, storytelling</span>
+            </div>
+            <div class="stat">
+              <strong>ML</strong>
+              <span>Predictive modeling and applied machine learning</span>
+            </div>
+            <div class="stat">
+              <strong>Analytics</strong>
+              <span>Decision support with clear business context</span>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card hero-side">
+          <div class="profile">
+            <h3>Quick Introduction</h3>
+            <p>
+              Add a short professional summary here: who you are, what roles you are targeting, and what makes your background valuable.
+            </p>
+            <div class="tag-list">
+              <span class="tag">Power BI</span>
+              <span class="tag">SQL</span>
+              <span class="tag">Python</span>
+              <span class="tag">R</span>
+              <span class="tag">Excel</span>
+              <span class="tag">Tableau</span>
+            </div>
+          </div>
+          <div class="profile">
+            <h3>What this site will include</h3>
+            <p>
+              Start with a strong landing page and one dedicated BI page. Then expand the same design system into Machine Learning, R Programming, and Data Analytics pages.
+            </p>
+          </div>
+        </aside>
+      </div>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>About Me</h2>
+              <p>Use this section to connect your resume to the type of work you want to be hired for.</p>
+            </div>
+          </div>
+          <div class="about">
+            <div class="card panel">
+              <h3>Professional Summary</h3>
+              <p>
+                Replace this with a focused summary tailored to your goals. A good version here should mention your experience with business intelligence, analytics, dashboards, reporting, experimentation, and stakeholder-facing work.
+              </p>
+              <p>
+                You can also briefly mention your move target, the industries you are interested in, and the kinds of roles you are applying for.
+              </p>
+            </div>
+            <div class="card panel">
+              <h3>Highlights</h3>
+              <div class="timeline">
+                <div class="timeline-item">
+                  <small>Strength 01</small>
+                  <strong>Business storytelling</strong>
+                  <p>Transform raw data into dashboards and recommendations that are easy to act on.</p>
+                </div>
+                <div class="timeline-item">
+                  <small>Strength 02</small>
+                  <strong>Technical versatility</strong>
+                  <p>Work across BI tools, spreadsheets, SQL, Python, and R depending on the problem.</p>
+                </div>
+                <div class="timeline-item">
+                  <small>Strength 03</small>
+                  <strong>Portfolio-driven presentation</strong>
+                  <p>Show not only what you know, but how you think, solve, and communicate.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Core Skills</h2>
+              <p>These cards can mirror the categories in your navigation tabs.</p>
+            </div>
+          </div>
+          <div class="skills-grid">
+            <div class="card bullet-card">
+              <h3>Business Intelligence</h3>
+              <p>Dashboards, KPI tracking, executive reporting, self-service analytics, and business storytelling.</p>
+              <ul class="clean">
+                <li>Power BI / Tableau</li>
+                <li>Data modeling</li>
+                <li>DAX / calculated metrics</li>
+                <li>Interactive dashboard design</li>
+              </ul>
+            </div>
+            <div class="card bullet-card">
+              <h3>Machine Learning</h3>
+              <p>Predictive modeling and applied analytics for classification, regression, and business decision support.</p>
+              <ul class="clean">
+                <li>Python</li>
+                <li>scikit-learn</li>
+                <li>Model evaluation</li>
+                <li>Feature engineering</li>
+              </ul>
+            </div>
+            <div class="card bullet-card">
+              <h3>R Programming</h3>
+              <p>Statistical computing, visualization, and analysis workflows built for reproducibility and communication.</p>
+              <ul class="clean">
+                <li>ggplot2</li>
+                <li>dplyr / tidyr</li>
+                <li>R Markdown</li>
+                <li>Exploratory analysis</li>
+              </ul>
+            </div>
+            <div class="card bullet-card">
+              <h3>Data Analytics</h3>
+              <p>Turning messy data into usable insight through cleaning, analysis, visualization, and interpretation.</p>
+              <ul class="clean">
+                <li>Excel</li>
+                <li>SQL</li>
+                <li>EDA</li>
+                <li>Business recommendations</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Featured Work</h2>
+              <p>Use project cards to preview the strongest parts of your portfolio.</p>
+            </div>
+          </div>
+          <div class="projects-grid">
+            <div class="card project-card">
+              <h3>Sales Dashboard Case Study</h3>
+              <div class="project-meta">
+                <span class="mini">Power BI</span>
+                <span class="mini">Dashboard</span>
+                <span class="mini">KPIs</span>
+              </div>
+              <p>
+                Add a short description of the business problem, the data source, the key metrics, and the impact of your dashboard.
+              </p>
+              <a class="btn" href="#bi" data-page-link="bi">See BI projects</a>
+            </div>
+            <div class="card project-card">
+              <h3>Customer Segmentation Analysis</h3>
+              <div class="project-meta">
+                <span class="mini">Analytics</span>
+                <span class="mini">SQL</span>
+                <span class="mini">Python</span>
+              </div>
+              <p>
+                Add a project here that shows how you translated data into business actions or recommendations.
+              </p>
+              <a class="btn" href="https://github.com/nikemehr" target="_blank" rel="noreferrer">View code</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <h2>Contact</h2>
+              <p>Keep this section simple and direct.</p>
+            </div>
+          </div>
+          <div class="contact-wrap">
+            <div class="card contact-card">
+              <h3>Links</h3>
+              <p>Add your LinkedIn, GitHub, resume PDF, and email address here.</p>
+              <ul class="clean">
+                <li>LinkedIn</li>
+                <li>GitHub</li>
+                <li>Resume PDF</li>
+                <li>Email</li>
+              </ul>
+            </div>
+            <div class="card contact-card">
+              <h3>Call to action</h3>
+              <p>
+                Open to roles in business intelligence, analytics, and data-focused strategy. Based in Michigan and interested in opportunities across the U.S.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="bi" class="page hidden-page">
+      <div class="container" style="padding-top: 5rem;">
+        <div class="section-head">
+          <div>
+            <h2>Business Intelligence</h2>
+            <p>This page is dedicated to dashboards, reporting projects, BI case studies, and data storytelling.</p>
+          </div>
+        </div>
+
+        <div class="tab-note">
+          This is your first dedicated portfolio tab. As you add more content, keep the same structure for Machine Learning, R Programming, and Data Analytics.
+        </div>
+
+        <div class="bi-grid">
+          <div class="card bi-card">
+            <h3>BI Project 01</h3>
+            <div class="bi-meta">
+              <span class="mini">Power BI</span>
+              <span class="mini">Executive Dashboard</span>
+            </div>
+            <p>
+              Describe the project in four parts: business context, data used, dashboard design, and insights delivered.
+            </p>
+            <ul class="clean">
+              <li>Goal: what decision or problem was addressed</li>
+              <li>Data: source, size, and structure</li>
+              <li>Metrics: KPIs, trends, filters, segmentation</li>
+              <li>Outcome: what the user learned or improved</li>
+            </ul>
+          </div>
+
+          <div class="card bi-card">
+            <h3>BI Project 02</h3>
+            <div class="bi-meta">
+              <span class="mini">Dashboard Design</span>
+              <span class="mini">Reporting</span>
+            </div>
+            <p>
+              Add screenshots, mock KPI descriptions, or links to repository files once you are ready.
+            </p>
+            <ul class="clean">
+              <li>Use one hero image per project</li>
+              <li>Keep text business-facing</li>
+              <li>Highlight measurable impact</li>
+              <li>Show tool stack clearly</li>
+            </ul>
+          </div>
+
+          <div class="card bi-card">
+            <h3>Dashboard Design Principles</h3>
+            <p>
+              You can also include a section showing how you think about BI work: audience, metric definition, drill-down paths, and visual clarity.
+            </p>
+          </div>
+
+          <div class="card bi-card">
+            <h3>Tools & Methods</h3>
+            <p>
+              Power BI, SQL, Excel, DAX, data modeling, ETL preparation, KPI design, stakeholder reporting, and visual storytelling.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top: 1.25rem;">
+          <a class="btn" href="#home" data-page-link="home">Back to Home</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      Designed as a clean GitHub Pages portfolio starter. Replace placeholder content with your real resume, links, and project details.
+    </div>
+  </footer>
+
+  <script>
+    const pages = document.querySelectorAll('.page');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const pageLinks = document.querySelectorAll('[data-page-link]');
+
+    function showPage(pageId) {
+      pages.forEach(page => {
+        page.classList.remove('active-page');
+        page.classList.add('hidden-page');
+      });
+
+      const target = document.getElementById(pageId);
+      if (target) {
+        target.classList.remove('hidden-page');
+        target.classList.add('active-page');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      navLinks.forEach(link => {
+        link.classList.toggle('active', link.dataset.page === pageId);
+      });
+    }
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        showPage(link.dataset.page);
+        history.replaceState(null, '', `#${link.dataset.page}`);
+      });
+    });
+
+    pageLinks.forEach(link => {
+      link.addEventListener('click', event => {
+        event.preventDefault();
+        const pageId = link.dataset.pageLink;
+        showPage(pageId);
+        history.replaceState(null, '', `#${pageId}`);
+      });
+    });
+
+    const initialHash = window.location.hash.replace('#', '');
+    if (initialHash === 'bi') {
+      showPage('bi');
+    } else {
+      showPage('home');
+    }
+  </script>
+</body>
+</html>
