@@ -252,7 +252,7 @@ section { padding: 1rem 0 3rem; }
 .projects-grid,
 .bi-grid,
 .contact-wrap {
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, 1fr);
 }
 
 .panel,
