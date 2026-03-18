@@ -53,12 +53,14 @@ img { max-width: 100%; display: block; }
 }
 
 .brand {
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  font-size: 1.05rem;
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: white;
 }
 
-.brand span { color: var(--accent-2); }
+.brand span {
+  color: white;
+}
 
 .nav-links {
   display: flex;
